@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+    <html lang="he">
+        <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>Osher's Portfolio</title>
+            <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+             <link rel="stylesheet" href="styles.css">
+        </head>
+        <body id="body">
+            <header class = nav-header>
+                <div class="left-nav-items">
+                    <img class="logo" src="assets/profile-image.png" alt="logo">
+                    <div class="nav-logo">
+                        <span>Osher Buchris</span>
+                    </div>
+                </div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a class="main-button" href="#body">ראשי</a></li>
+                        <li><a class="normal-button" href="#profile">אודות</a></li>
+                        <li><a class="normal-button" href="#projects">שירותים</a></li>
+                        <li><a class="normal-button" href="#contact">צור קשר</a></li>
+                    </ul>
+                </nav>
+            </header>
+            <section class="hero-section">
+                    <h2 class="hero-title">תיק עבודות אישי</h2>
+                    <p class="hero-subtitle">שלום לכולם שמי אושר וזה טקסט שבו אני בודק מה בעצם יכול לקרות כאשר הטקסט מאוד מאוד מאוד ארוך ואני ממשיך וממשיך וממשיך לכתוב</p>
+                    <div class="hero-buttons">
+                        <button class="hero-button primary">לפרטים נוספים</button>
+                        <button class="hero-button secondary">להורדת הפרויקט</button>
+                    </div>
+            </section>
+            <section class="tech-stack">
+                <div class="tech-logos">
+                    <img src="assets/sass.png" alt="sass">
+                    <img src="assets/img-API.png" alt="sass">
+                    <img src="assets/img-Bootstrap.png" alt="sass">
+                    <img src="assets/img-CSS.png" alt="sass">
+                    <img src="assets/img-JS.png" alt="sass">
+                    <img src="assets/img-OOP.png" alt="sass">
+                    <img src="assets/img-TypeScript.png" alt="sass">
+                    <img src="assets/img-ES6.png" alt="sass">
+                    <img src="assets/img-NodeJS.png" alt="sass">
+                </div>
+            </section>
+        <hr class="divider">
+            <section id="profile" class="profile-section">
+                <div class="profile-image">
+                    <!-- Make sure the path to your image is correct -->
+                    <img src="assets/profile-image.png" alt="Profile Image">
+                </div>
+                <h1 class="profile-title">קצת עליי</h1>
+                <p class="profile-text">
+                    לורם איפסום או בקיצור ליפסום, הוא מלל מקובל וחסר משמעות
+                    המשתמש “ממלא מקום” בעת עריכה, בתחום הדפוס, הדפסת הפרסום
+                    וכדומה. לורם איפסום או בקיצור ליפסום, הוא מלל מקובל וחסר משמעות.
+                </p>
+                <p class="profile-text">
+                    לורם איפסום או בקיצור ליפסום, הוא מלל מקובל וחסר משמעות/
+                    לורם איפסום או בקיצור ליפסום. הוא מלל מקובל.
+                </p>
+
+                <a href="assets/projects/resume.pdf" download>
+                    <button class="download-btn">להורדת קורות חיים</button>
+                </a>
+
+            </section>
+            <section id="projects" class="projects-section">
+                <h2 class="projects-title">עבודות נבחרות</h2>
+                <div class="projects-container">
+                    <div class="project">
+                        <img class="project-image" src="assets/projects/project1.png" alt="Project Image">
+                        <h3 class="project-title">פרויקט 1</h3>
+                        <p class="project-description">תיאור הפרויקט הראשון. זהו פרויקט לדוגמה שמציג את היכולות שלי בתחום הפיתוח.</p>
+                        <button class="project-download-btn" data-project="projects/project1.html">פרויקט 1</button>
+                    </div>
+                    <div class="project">
+                        <img class="project-image" src="assets/projects/project2.png" alt="Project Image">
+                        <h3 class="project-title">פרויקט 2</h3>
+                        <p class="project-description">תיאור הפרויקט השני. זהו פרויקט לדוגמה שמציג את היכולות שלי בתחום הפיתוח.</p>
+                        <button class="project-download-btn" data-project="projects/project2.html">פרויקט 2</button>
+                    </div>
+                    <div class="project">
+                        <img class="project-image" src="assets/projects/project3.png" alt="Project Image">
+                        <h3 class="project-title">פרויקט 3</h3>
+                        <p class="project-description">תיאור הפרויקט השלישי. זהו פרויקט לדוגמה שמציג את היכולות שלי בתחום הפיתוח.</p>
+                        <button class="project-download-btn" data-project="projects/project3.html">פרויקט 3</button>
+                    </div>
+                    <div class="project">
+                        <img class="project-image" src="assets/projects/project4.png" alt="Project Image">
+                        <h3 class="project-title">פרויקט 4</h3>
+                        <p class="project-description">תיאור הפרויקט הרביעי. זהו פרויקט לדוגמה שמציג את היכולות שלי בתחום הפיתוח.</p>
+                        <button class="project-download-btn" data-project="projects/project4.html">פרויקט 4</button>
+                    </div>
+                    <div class="project">
+                        <img class="project-image" src="assets/projects/project5.png" alt="Project Image">
+                        <h3 class="project-title">פרויקט 5</h3>
+                        <p class="project-description">תיאור הפרויקט החמישי. זהו פרויקט לדוגמה שמציג את היכולות שלי בתחום הפיתוח.</p>
+                        <button class="project-download-btn" data-project="projects/project5.html">פרויקט 5</button>
+                    </div>
+                    <div class="project">
+                        <img class="project-image" src="assets/projects/project6.png" alt="Project Image">
+                        <h3 class="project-title">פרויקט 6</h3>
+                        <p class="project-description">תיאור הפרויקט השישי. זהו פרויקט לדוגמה שמציג את היכולות שלי בתחום הפיתוח.</p>
+                        <button class="project-download-btn" data-project="projects/project6.html">פרויקט 6</button>
+                    </div>
+                </div>
+
+                <!-- Hidden iframe for loading project -->
+                <iframe id="project-frame" src="" style="width: 100%; height: 600px; border: none; display: none;"></iframe>
+
+                <!-- Back button to return to project list -->
+                <button id="back-button" style="display: none;">חזרה</button>
+
+            </section>
+
+            <section id="contact" class="contact-section">
+                <h2 class="contact-title">צור קשר</h2>
+                <p class="contact-description">אנא מלא את הטופס הבא כדי ליצור קשר:</p>
+                <form class="contact-form">
+                    <label for="name">שם:</label>
+                    <input type="text" id="name" name="name" placeholder="שם" required>
+
+                    <label for="email">אימייל:</label>
+                    <input type="email" id="email" name="email" placeholder="אימייל" required>
+
+                    <label for="phone">טלפון:</label>
+                    <input type="tel" id="phone" name="phone" placeholder="טלפון" required>
+
+                    <label for="message">הודעה:</label>
+                    <textarea id="message" name="message" placeholder="הודעה" required></textarea>
+
+                    <button type="submit" class="submit-button">שליחה</button>
+                </form>
+            </section>
+            <footer>
+                <div class="footer-container">
+                    <div class="footer-icons">
+                        <div class="icon">
+                            <img src="assets/footer/location.png" alt="Location">
+                            <p>מדינת ישראל</p>
+                        </div>
+                        <div class="icon">
+                            <img src="assets/footer/email.png" alt="Email">
+                            <p>osher@gmail.com</p>
+                        </div>
+                        <div class="icon">
+                            <img src="assets/footer/whatsapp.png" alt="WhatsApp">
+                            <p>055-555555555</p>
+                        </div>
+                        <div class="icon">
+                            <img src="assets/footer/whatsapp.png" alt="Phone">
+                            <p>055-5555555</p>
+                        </div>
+                        <div class="icon">
+                            <img src="assets/footer/linked-in.png" alt="LinkedIn">
+                            <p>linked-in</p>
+                        </div>
+                        <div class="icon">
+                            <img src="assets/footer/facebook.png" alt="Facebook">
+                            <p>facebook</p>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>Osher Buchris 2025</p>
+                    </div>
+                </div>
+            </footer>
+            <script src="script.js"></script>
+        </body>
+</html>

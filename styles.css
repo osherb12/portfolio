@@ -1,0 +1,545 @@
+html {
+    scroll-behavior: smooth; /* Enables smooth scrolling */
+}
+
+p {
+    direction: rtl; /* Ensures text flows from right to left */
+    unicode-bidi: plaintext; /* Makes punctuation behave naturally */
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px; /* Minimized top/bottom padding */
+    height: auto; /* Remove any fixed height */
+    background-color: #ffffff;
+    opacity: 0.95;
+    position: fixed; /* Ensures it stays visible while scrolling */
+    top: 0; /* Sticks the navbar to the top of the page */
+    width: 100%; /* Stretches the navbar across the viewport */
+    z-index: 1000; /* Places it above other content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adds a slight shadow for visibility */
+}
+
+.left-nav-items {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between the logo and text */
+    margin-left: 10%; /* Space on the left side */
+
+}
+
+.logo {
+    width: 40px !important;
+    height: auto !important;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.logo:hover {
+    transform: scale(1.01); /* Slightly enlarge on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+
+.nav-logo {
+    font: bold 14px/20px Heebo, sans-serif; /* Reduce font size and line height */
+    margin: 0; /* Remove extra margin */
+    padding: 0;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-right: 10%; /* Space on the left side */
+
+}
+
+.nav-links {
+    direction: rtl;
+    margin: 0; /* Remove right margin */
+    padding: 0; /* Remove extra padding */
+}
+
+
+
+.nav-links a:focus {
+    outline: none; /* Removes the square when focused */
+}
+
+.nav-links li {
+    display: inline-block;
+    margin: 0; /* Remove margins */
+    padding: 0 8px; /* Reduce horizontal spacing */
+}
+
+a {
+    font: normal normal 600 14px/20px Heebo, sans-serif; /* Reduce font size and line height */
+    text-decoration: none; /* Remove underline */
+    color: #2C2C2C;
+    padding: 5px 8px; /* Reduce padding around links */
+    margin: 0;
+    display: inline-block;
+    cursor: pointer;
+
+}
+
+.main-button {
+    color: #1AE0EC;
+}
+.nav-links li {
+    display: inline-block;
+    padding: 0 10px; /* Spacing between buttons */
+}
+
+.hero-section {
+    background: #13E8F163 5% 0% no-repeat padding-box; /* Light blue with transparency */
+    text-align: center;
+    position: relative;
+    padding: 40px 20px; /* Equal top and bottom padding */
+    min-height: auto; /* Remove any fixed height if applied */
+
+}
+
+
+.hero-title {
+    padding-top: 50px;
+    font-family: 'Heebo', sans-serif;
+    color: #2C2C2C;
+    margin-bottom: 10px;
+    margin-top: 0;
+}
+
+.hero-subtitle {
+    direction: rtl;
+    font: normal normal 500 16px/24px Heebo;
+    color: #2C2C2C;
+    margin-bottom: 15px;
+}
+
+.hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 10px;
+}
+
+.hero-button {
+    padding: 8px 16px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 14px;
+    color: #FFFFFF ;
+    background: #1AE0EC;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+/* Add hover animation for <a> and buttons */
+a, .hero-button {
+    transition: all 0.3s ease; /* Smooth transition for all properties */
+}
+
+/* Hover effect for <a> */
+a:hover {
+    color: #1AE0EC; /* Change text color */
+    transform: scale(1.05); /* Slightly enlarge */
+}
+
+/* Hover effect for buttons */
+.hero-button {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.hero-button:hover {
+    background-color: #17c4d0; /* Slightly darker blue for buttons */
+    transform: translateY(-3px); /* Move button up slightly */
+}
+
+/* Focus effect for accessibility */
+.hero-button:focus, a:focus {
+    outline: 2px solid #1AE0EC; /* Add a visible outline */
+    outline-offset: 2px; /* Space the outline slightly */
+}
+
+/* Section styling */
+.tech-stack {
+    text-align: center;
+    padding: 30px 20px; /* Add spacing around the section */
+}
+
+.tech-logos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow logos to wrap on smaller screens */
+    gap: 20px; /* Space between logos */
+}
+
+.tech-logos img {
+    width: 100px; /* Initial size of logos */
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease; /* Smooth animation for hover effect */
+    cursor: pointer;
+}
+
+.tech-logos img:hover {
+    transform: scale(1.2); /* Enlarge logo slightly on hover */
+}
+
+hr.solid {
+    border-top: 3px solid rgba(187, 187, 187, 0.34);
+}
+
+.profile-section {
+    font: normal normal normal 16px/37px Heebo;
+    max-width: 600px;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.profile-image {
+    display: flex; /* Use flexbox to center align the image */
+    justify-content: center; /* Horizontally center the image */
+    align-items: center; /* Vertically center the image */
+    padding-top: 60px;
+}
+
+.profile-image img {
+    width: 101px; /* Smaller size for the profile image */
+    height: auto; /* Maintain the aspect ratio */
+    border-radius: 50%; /* Ensure the image remains circular */
+}
+
+/* Title under the image */
+.profile-title {
+}
+
+/* Paragraph text */
+.profile-text {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding: 0 10px;
+}
+
+/* Button styling */
+.download-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #00c3ff;
+    border: none;
+    border-radius:20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.download-btn:hover {
+    background-color: #009bd6;
+}
+
+.projects-section {
+    direction:rtl;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; /* Stack items one under another */
+    align-items: center;
+    justify-content: center;
+    background-color: #F6F6F6 ;
+}
+
+.projects-container {
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Ensure 3 projects per row */
+    gap: 20px; /* Space between items */
+    justify-content: center; /* Center projects horizontally */
+}
+@media (max-width: 768px) {
+    .projects-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+}
+
+.projects-title {
+    padding: 0;
+    font-family: 'Heebo', sans-serif;
+    color: #2C2C2C;
+    margin-bottom: 10px;
+    margin-top: 60px; /* Add 20px margin-top */
+}
+.project {
+    width: 200px;
+    background-color: #ffffff;
+    border-radius: 20px; /* More rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    max-width: 400px; /* Set maximum width */
+    margin: 20px auto; /* Center the project card */
+    overflow: hidden; /* Ensure content stays within the card */
+}
+
+.project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.project-image {
+    width: 100%; /* Ensure it fills the container */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 10px 10px 0 0; /* Keep rounded corners at the top only */
+    display: block; /* Prevent extra spacing from inline elements */
+    margin: 0; /* Remove any margins */
+    padding: 0; /* Remove any padding */
+    object-fit: cover; /* Ensures the image scales correctly */
+}
+
+
+.project-title {
+    font-family: 'Heebo', sans-serif;
+    font-size: 1.5rem;
+    color: #2C2C2C;
+    margin-bottom: 10px;
+}
+
+.project-description {
+    font-family: 'Heebo', sans-serif;
+    font-size: 1rem;
+    color: #2C2C2C;
+    margin-bottom: 15px;
+    line-height: 1.6; /* Better readability */
+}
+
+.project-download-btn {
+    padding: 10px 20px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #1AE0EC;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Button shadow */
+}
+
+.project-download-btn:hover {
+    background-color: #17c4d0;
+    transform: translateY(-3px);
+}
+
+.contact-section {
+    font-family: 'Heebo', sans-serif;
+    color: #ffffff;
+    font-size: 1rem;
+    background-color: #3A3A3A ;
+    padding: 30px 10%;
+    text-align: right;
+    position: relative; /* Allows layering */
+    overflow: hidden; /* Prevents background overflow */
+}
+
+.contact-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%; /* Adjust size if needed */
+    height: 50%; /* Adjust size if needed */
+    background-image: url('assets/Rectangle 41.png');
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-size: 50%; /* Scale image to 50% of its original size */
+    opacity: 0.5; /* Set image opacity to 50% */
+    z-index: 0; /* Ensure it stays behind text */
+}
+
+.contact-section * {
+    position: relative; /* Ensure text stays above the image */
+    z-index: 1;
+}
+
+
+.contact-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.contact-description {
+    margin-bottom: 20px;
+}
+
+.contact-form {
+    direction: rtl;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    max-width: 600px; /* Limit form width */
+    margin: 0 0 0 auto; /* Align the form to the right */}
+
+.contact-form label {
+    font-weight: bold;
+    text-align: right;
+    margin-bottom: 5px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    font-family: 'Heebo', sans-serif; /* Use Heebo font */
+    font-size: 1rem; /* Match font size */
+    line-height: 1.5; /* Ensure consistent line height */
+    color: #333; /* Same text color */
+    width: 100%; /* Ensure inputs and textarea match width */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    text-align: right; /* Align text to the right */
+    direction: rtl; /* Ensure proper Hebrew text flow */
+    background-color: #ffffff; /* Match background color */
+    border-bottom: 2px solid #1AE0EC; /* Consistent bottom border */
+}
+
+.contact-form input::placeholder,
+.contact-form textarea::placeholder {
+    text-align: right; /* Ensure placeholders align properly */
+    direction: rtl; /* Placeholder follows right-to-left alignment */
+    color: #aaa; /* Placeholder color for better visibility */
+
+}
+
+.contact-form textarea {
+    border-bottom: 3px solid #1AE0EC; /* Add bottom border with 1AE0EC color */
+
+    resize: vertical; /* Allow vertical resizing */
+    height: 150px; /* Default height for text area */
+}
+
+.submit-button {
+    width: fit-content; /* Adjust button width to fit content */
+    padding: 10px 20px;
+    margin-top: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #2C2C2C;
+    background-color: #1AE0EC;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    align-self: flex-end; /* Align button to the right */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.submit-button:hover {
+    color: #ffffff;
+    background-color: #17c4d0; /* Slightly darker blue for buttons */
+    transition: background-color 0.5s ease, transform 0.5s ease; /* Add delay for color change */
+
+}
+
+.divider{
+    border-top: 1px solid rgba(0, 0, 0, 0.1); /* Black color with 0.3 opacity */
+}
+
+footer {
+    background-color: #00E5FF; /* Light blue background */
+    color: #000; /* Black text */
+    text-align: center;
+    padding: 20px 0;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-icons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 40px; /* Space between icons */
+    margin-bottom: 20px;
+}
+
+.icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-size: 14px;
+}
+
+.icon img {
+    width: 40px; /* Set a uniform width */
+    height: 40px; /* Set a uniform height */
+    object-fit: contain; /* Ensure icons fit within the specified dimensions */
+    transition: transform 0.3s ease; /* Add a smooth hover effect */
+    cursor: pointer;
+}
+
+.icon img:hover {
+    transform: scale(1.2); /* Slightly enlarge on hover */
+}
+
+.footer-bottom {
+    background-color: #333; /* Dark background for bottom bar */
+    color: #fff; /* White text */
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    flex-wrap: wrap;
+}
+
+.footer-bottom p {
+    margin: 0 20px;
+}
+#back-button {
+    padding: 10px 20px;
+    font-family: 'Heebo', sans-serif;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #1AE0EC; /* Matches project buttons */
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Soft shadow like other buttons */
+    margin:20px;
+    display: block;
+}
+
+#back-button:hover {
+    background-color: #17c4d0; /* Slightly darker blue on hover */
+    transform: translateY(-3px); /* Lift effect */
+}
+
+#project-frame {
+    margin: 10px auto; /* Reduce space around */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden; /* Prevent unwanted expansion */
+}
+.project-preview {
+    width: 100%;
+    height: 200px; /* Adjust height for a good preview */
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+    overflow: hidden;
+}
