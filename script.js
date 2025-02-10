@@ -6,13 +6,22 @@ document.addEventListener("DOMContentLoaded", function () {
     const projectsTitle = document.querySelector(".projects-title"); // "עבודות נבחרות"
     const heroTitle = document.querySelector(".hero-title"); // Hero title
     const profileSection = document.getElementById("profile"); // Profile section
-    const downloadLink = document.getElementById("download-project"); // The <a> element around the button
+    const downloadButton = document.getElementById("download-project"); // The download button
     const originalHeroTitle = heroTitle.textContent; // Store original title
     const defaultDownloadHref = "index.html"; // Default download file
 
-    // Set default download href
-    downloadLink.setAttribute("href", defaultDownloadHref);
-    downloadLink.setAttribute("download", "index.html");
+    let currentDownloadHref = defaultDownloadHref; // Track the current download file
+
+    // Set default download action
+    downloadButton.addEventListener("click", function () {
+        const a = document.createElement("a");
+        a.href = currentDownloadHref;
+        a.setAttribute("download", currentDownloadHref.split('/').pop());
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    });
 
     projectButtons.forEach(button => {
         button.addEventListener("click", function () {
@@ -27,9 +36,8 @@ document.addEventListener("DOMContentLoaded", function () {
             profileSection.style.display = "none"; // Hide profile section
             heroTitle.textContent = projectName; // Change hero title to project name
 
-            // Change download button href to match the selected project
-            downloadLink.setAttribute("href", projectUrl);
-            downloadLink.setAttribute("download", projectUrl.split('/').pop());
+            // Update download button behavior
+            currentDownloadHref = projectUrl;
 
             // Scroll so the project section is at the top
             document.getElementById("projects").scrollIntoView({ behavior: "smooth", block: "start" });
@@ -46,8 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         projectFrame.src = ""; // Reset iframe source
 
         // Reset download button to index.html
-        downloadLink.setAttribute("href", defaultDownloadHref);
-        downloadLink.setAttribute("download", "index.html");
+        currentDownloadHref = defaultDownloadHref;
 
         // Scroll back to the projects section smoothly
         document.getElementById("projects").scrollIntoView({ behavior: "smooth", block: "start" });
