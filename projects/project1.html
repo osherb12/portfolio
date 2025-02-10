@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>טופס הרשמה</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
+
+        body {
+            background: linear-gradient(to bottom, #ff007f, #bf00ff 50%, white 50%);
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Heebo', sans-serif;
+            padding-right: 50px;
+            transition: background 0.5s ease-in-out;
+        }
+        .container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100%;
+        }
+        .form-box {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            width: 350px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            transform: translateX(50px);
+            opacity: 0;
+            animation: fadeInRight 0.8s forwards;
+        }
+        @keyframes fadeInRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        .form-box h2 {
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+        .form-box p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            text-align: right;
+            margin-bottom: 5px;
+        }
+        input {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 2px solid #bf00ff;
+            border-radius: 5px;
+            transition: box-shadow 0.3s ease-in-out, border-color 0.3s;
+        }
+        input:focus {
+            box-shadow: 0 0 8px rgba(255, 0, 127, 0.6);
+            border-color: #ff007f;
+            outline: none;
+        }
+        button {
+            background: #ff007f;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease-in-out, transform 0.2s;
+        }
+        button:hover {
+            background: #bf00ff;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="form-box">
+        <h2>תן לנו להוביל אותך קדימה</h2>
+        <p>לורם איפסום או בקיצור ליפסום, הוא מלל מקובל.<br>והסר משמעות המשתמש "ממלא מקום" בעת עריכ</p>
+        <form>
+            <label for="name">שם מלא</label>
+            <input type="text" id="name" placeholder="הכנס את שמך" required>
+
+            <label for="email">אימייל</label>
+            <input type="email" id="email" placeholder="הכנס את האימייל שלך" required>
+
+            <button type="submit">שליחה</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>
