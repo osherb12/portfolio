@@ -39,7 +39,6 @@ document.addEventListener("DOMContentLoaded", function () {
     backButton.addEventListener("click", function () {
         projectFrame.style.display = "none"; // Hide iframe
         backButton.style.display = "none"; // Hide back button
-        projectsContainer.style.display = "grid"; // Restore project list
         projectsTitle.style.display = "block"; // Show "עבודות נבחרות"
         profileSection.style.display = "block"; // Show profile section
         heroTitle.textContent = originalHeroTitle; // Restore original hero title
@@ -49,7 +48,31 @@ document.addEventListener("DOMContentLoaded", function () {
         downloadLink.setAttribute("href", defaultDownloadHref);
         downloadLink.setAttribute("download", "index.html");
 
+        // Restore the correct display style based on screen width
+        if (window.innerWidth > 768) {
+            projectsContainer.style.display = "grid"; // Large screens use grid
+        } else {
+            projectsContainer.style.display = "flex"; // Small screens use flex-wrap
+            projectsContainer.style.flexWrap = "wrap";
+            projectsContainer.style.alignItems = "center";
+            projectsContainer.style.justifyContent = "center"; // Ensure items are centered
+        }
+
         // Scroll back to the projects section smoothly
         document.getElementById("projects").scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    // Ensure the project container is correctly displayed when resizing the window
+    window.addEventListener("resize", function () {
+        if (projectFrame.style.display === "none") {
+            if (window.innerWidth > 768) {
+                projectsContainer.style.display = "grid";
+            } else {
+                projectsContainer.style.display = "flex";
+                projectsContainer.style.flexWrap = "wrap";
+                projectsContainer.style.alignItems = "center";
+                projectsContainer.style.justifyContent = "center";
+            }
+        }
     });
 });
