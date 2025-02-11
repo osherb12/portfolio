@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ייעוץ חינם</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Heebo', sans-serif;
+            background-color: #ffffff;
+            text-align: center;
+        }
+
+        .whatsapp-icon {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: white;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .whatsapp-icon:hover {
+            transform: scale(1.2);
+        }
+        .whatsapp-icon i {
+            font-size: 30px;
+            color: black;
+        }
+
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            background-color: #0EE1E1;
+            padding: 20px;
+            width:100vw;
+            box-sizing: border-box;
+        }
+
+        .left-container {
+            flex: 1;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+        .left-container h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        .left-container p {
+            font-size: 1rem;
+            font-weight: 400;
+            max-width: 500px;
+            margin: 0;
+        }
+
+        .right-container img {
+            width: 250px;
+            height: auto;
+            margin-left: 100px;
+            margin-right: 100px;
+        }
+
+        .boxes-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px 20px;
+        }
+
+        .box {
+            background-color: #F8F8F8;
+            width: 250px;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+        }
+
+        .box h2 {
+            color: #0EE1E1;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .box p {
+            font-size: 1rem;
+            color: #333;
+        }
+
+        /* Last container section */
+        .last-container {
+            display: flex;
+            width: 100vw;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .contact-container {
+            font-family: 'Heebo', sans-serif;
+            background-color: #E8FFFF;
+            width: 50%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .contact-title {
+            width:50%;
+            color: #00C7D7;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .contact-description {
+            width:50%;
+            color: #2C2C2C;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .contact-input, .contact-textarea {
+            width: 100%;
+            max-width: 350px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-bottom: 2px solid #00C7D7;
+            background: #EDEFF1;
+            font-family: 'Heebo', sans-serif;
+            resize: none;
+            box-sizing: border-box;
+        }
+
+        .contact-textarea {
+            height: 50px;
+        }
+
+        .contact-button {
+            width: 100%;
+            max-width: 350px;
+            padding: 10px;
+            background: #00C7D7;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: 'Heebo', sans-serif;
+        }
+
+        .contact-button:hover {
+            background: #00B3C1;
+        }
+
+        .map-container {
+            width: 50%;
+            background-color: #0EE1E1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .map-container iframe {
+            width: 90%;
+            height: 300px;
+            border-radius: 10px;
+        }
+
+        @media screen and (max-width: 600px) {
+            .header {
+                flex-direction: column; /* Ensure the text is above the image */
+                text-align: center;
+                padding: 20px;
+            }
+
+            .left-container {
+                align-items: center;
+                text-align: center;
+            }
+
+            .right-container img {
+                margin: 0;
+                width: 200px; /* Adjust size for small screens */
+            }
+
+            .boxes-container {
+                flex-direction: column; /* Stack boxes */
+                align-items: center;
+            }
+            .last-container {
+                flex-direction: column;
+            }
+
+            .contact-container, .map-container {
+                width: 100%;
+            }
+
+            .map-container iframe {
+                width: 100%;
+            }
+        }
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            border-bottom: #00C7D7 10px solid;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #0EE1E1;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-decoration: none;
+            font-size: 24px;
+            color: black;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+<div class="whatsapp-icon">
+    <i class="fab fa-whatsapp"></i>
+</div>
+
+<header class="header">
+    <div class="right-container">
+        <img src="box.png" alt="קופסה פתוחה">
+    </div>
+    <div class="left-container">
+        <h1>לחשוב מחוץ ל</h1>
+        <p>
+            לורם איפסום דולר סיט אמט לורם איפסום דולר סיט אמט לורם איפסום דולר סיט אמט לורם איפסום דולר סיט אמט
+        </p>
+    </div>
+</header>
+
+<section class="boxes-container">
+    <div class="box">
+        <h2>כותרת אזור</h2>
+        <p>לקבלת ייעוץ חינם, השאירו פרטים ומומחה יחזור אליכם עם מענה.</p>
+    </div>
+    <div class="box">
+        <h2>כותרת אזור</h2>
+        <p>לקבלת ייעוץ חינם, השאירו פרטים ומומחה יחזור אליכם עם מענה.</p>
+    </div>
+    <div class="box">
+        <h2>כותרת אזור</h2>
+        <p>לקבלת ייעוץ חינם, השאירו פרטים ומומחה יחזור אליכם עם מענה.</p>
+    </div>
+    <div class="box">
+        <h2>כותרת אזור</h2>
+        <p>לקבלת ייעוץ חינם, השאירו פרטים ומומחה יחזור אליכם עם מענה.</p>
+    </div>
+</section>
+
+<div class="last-container">
+    <div class="map-container">
+        <iframe src="https://maps.google.com/maps?q=Israel&t=&z=10&ie=UTF8&iwloc=&output=embed" frameborder="0"></iframe>
+    </div>
+    <div class="contact-container">
+        <h1 class="contact-title">הקופון עלינו</h1>
+        <p class="contact-description">לקבלת ייעוץ חינם, מוזמנים להשאיר פרטים ונחזור אליכם עם מענה.</p>
+        <div class="contact-form">
+            <form>
+                <input type="text" class="contact-input" placeholder="שם מלא" required>
+                <input type="email" class="contact-input" placeholder="דוא''ל" required>
+                <textarea class="contact-textarea" placeholder="הודעה" required></textarea>
+                <button type="submit" class="contact-button">שליחה</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="social-icons">
+    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#" target="_blank"><i class="fas fa-phone"></i></a>
+</div>
+
+</body>
+</html>

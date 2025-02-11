@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תן לנו להוביל אותך קדימה</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: white;
+        }
+        .hero {
+            width: 100%;
+            height: 50vh;
+            background: url('../assets/background_project4.png') no-repeat center bottom;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #c8d200;
+            font-size: 2rem;
+            font-weight: bold;
+            padding: 20px;
+            position: relative;
+            text-align: center;
+        }
+        .hero p {
+            font-size: 1.2rem;
+            color: white;
+            max-width: 600px;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+        .form-container {
+            width: 80%;
+            background: white;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+        }
+        input, button {
+            padding: 12px;
+            border-radius: 5px;
+            border: 2px solid #c8d200;
+            font-size: 1rem;
+            text-align: right;
+            flex: 1;
+            min-width: 180px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            background: transparent;
+        }
+        button {
+            background: #c8d200;
+            color: black;
+            cursor: pointer;
+            transition: background 0.3s ease-in-out;
+            font-weight: bold;
+            text-align: center;
+        }
+        button:hover {
+            background: #a0b000;
+        }
+
+        /* Mobile View - Stack items vertically */
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                padding: 40px 20px;
+            }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .hero p {
+                font-size: 1rem;
+                margin-bottom: 10px;
+            }
+            .form-container {
+                width: 95%;
+                padding: 15px;
+            }
+            form {
+                flex-direction: column;
+            }
+            input, button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="hero">
+    <h1>תן לנו להוביל אותך קדימה</h1>
+    <p>שלח את הפרטים הרלוונטים ואנחנו ניצור איתך קשר בהקדם, על מנת לקדם את העסק שלך בצורה טובה ביותר.</p>
+</div>
+<div class="form-container">
+    <form>
+        <input type="text" placeholder="שם מלא" required>
+        <input type="email" placeholder="אימייל" required>
+        <button type="submit">שליחה</button>
+    </form>
+</div>
+</body>
+</html>

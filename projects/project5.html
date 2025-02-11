@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ייעוץ חינם</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            display: flex;
+            width: 80%;
+            max-width: 1000px;
+            align-items: center;
+            justify-content: space-between;
+            height: 80vh;
+        }
+        .right-block {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: right;
+            padding: 20px;
+        }
+        h1 {
+            color: #FDBD03;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        p {
+            color: #2C2C2C;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 350px;
+        }
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .input-group input {
+            margin-bottom: 10px;
+            flex: 1;
+            width: 100%;
+
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid #FDBD03;
+            background: #E5EEFF;
+            font-family: 'Heebo', sans-serif;
+            resize: none;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 50px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #FDBD03;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            font-family: 'Heebo', sans-serif;
+        }
+        button:hover {
+            background: #d9a302;
+        }
+        .left-control img {
+            width: 270px;
+            height: auto;
+        }
+        .social-icons {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        .social-icons a {
+            background: #FDBD03;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+        .social-icons i {
+            font-size: 30px;
+            color: black;
+        }
+        .whatsapp-icon {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #FDBD03;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+        .whatsapp-icon i {
+            font-size: 30px;
+            color: black;
+        }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .input-group {
+                flex-direction: column;
+            }
+            .social-icons {
+                bottom: 10px;
+                left: 10px;
+            }
+            .social-icons a {
+                width: 40px;
+                height: 40px;
+            }
+            .social-icons i {
+                font-size: 25px;
+            }
+            .whatsapp-icon {
+                top: 10px;
+                left: 10px;
+                width: 40px;
+                height: 40px;
+            }
+            .whatsapp-icon i {
+                font-size: 25px;
+            }
+            .left-control img {
+                width: 200px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+<div class="whatsapp-icon">
+    <i class="fab fa-whatsapp"></i>
+</div>
+<div class="social-icons">
+    <a href="#"><i class="fab fa-facebook-f"></i></a>
+    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fas fa-phone"></i></a>
+</div>
+<div class="container">
+    <div class="left-control">
+        <img src="../assets/phone-messages.png" alt="Phone Illustration">
+    </div>
+    <div class="right-block">
+        <h1>ייעוץ חינם</h1>
+        <p>לקבלת ייעוץ חינם, מוזמנים להשאיר פרטים ומומחה יחזור אליכם עם מענה.</p>
+        <div class="form-container">
+            <form>
+                <div class="input-group">
+                    <input type="text" placeholder="שם מלא" required>
+                    <input type="email" placeholder="אימייל" required>
+                </div>
+                <textarea placeholder="שם מלא" required></textarea>
+                <button type="submit">שליחה</button>
+            </form>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>
