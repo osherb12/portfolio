@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
+    // ----------------------------
+    // Portfolio & Project Display Logic
+    // ----------------------------
     const projectButtons = document.querySelectorAll(".project-download-btn");
     const projectFrame = document.getElementById("project-frame");
     const backButton = document.getElementById("back-button");
@@ -75,4 +78,66 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
+
+    // ----------------------------
+    // Modal for "פתח פרוייקט" Navigation
+    // Always trigger modal on button click
+    // ----------------------------
+    const openProjectBtn = document.getElementById("open-project-btn");
+    if (openProjectBtn) {
+        const modal = document.getElementById("customModal");
+        const modalConfirm = document.getElementById("modalConfirm");
+        const modalCancel = document.getElementById("modalCancel");
+        const projectLink = document.getElementById("open-project-link");
+
+        openProjectBtn.addEventListener("click", function (e) {
+            e.preventDefault(); // Prevent immediate navigation
+            modal.style.display = "flex"; // Show modal (centered via flex)
+        });
+
+        // If user confirms, navigate to the project page
+        modalConfirm.addEventListener("click", function () {
+            const projectUrl = projectLink.href;
+            window.location.href = projectUrl;
+        });
+
+        // If user cancels, close the modal
+        modalCancel.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        // Optional: Close the modal if user clicks outside the modal content
+        window.addEventListener("click", function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        });
+    }
 });
+
+// ----------------------------
+// Additional Functions
+// ----------------------------
+function openProject(projectUrl) {
+    // Show the project-related elements
+    document.getElementById("open-project-buttons").style.display = "block";
+    document.getElementById("project-frame").style.display = "block"; // Show the iframe
+    document.getElementById("back-button").style.display = "block"; // Show the back button
+
+    // Update the iframe source with the selected project
+    document.getElementById("project-frame").src = projectUrl;
+
+    // Update the open project link and button dynamically
+    var projectLink = document.getElementById("open-project-link");
+    projectLink.href = projectUrl;
+
+    var projectButton = document.getElementById("open-project-btn");
+    projectButton.innerText = `פתח פרוייקט`;
+}
+
+function goBack() {
+    // Hide the iframe and the open project button
+    document.getElementById("project-frame").style.display = "none";
+    document.getElementById("open-project-buttons").style.display = "none";
+    document.getElementById("back-button").style.display = "none"; // Hide the back button
+}
