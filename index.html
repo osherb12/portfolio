@@ -77,47 +77,57 @@
                         <img class="project-image" src="assets/projects/project1.png" alt="Project Image">
                         <h3 class="project-title">פרויקט 1</h3>
                         <p class="project-description">תיאור הפרויקט הראשון. זהו פרויקט לדוגמה שמציג את היכולות שלי בתחום הפיתוח.</p>
-                        <button class="project-download-btn" data-project="projects/project1.html">פרויקט 1</button>
+                        <button class="project-download-btn" data-project="projects/project1.html" onclick="openProject('projects/project1.html')">פרויקט 1</button>
                     </div>
                     <div class="project">
                         <img class="project-image" src="assets/projects/project2.png" alt="Project Image">
                         <h3 class="project-title">פרויקט 2</h3>
                         <p class="project-description">תיאור הפרויקט השני. זהו פרויקט לדוגמה שמציג את היכולות שלי בתחום הפיתוח.</p>
-                        <button class="project-download-btn" data-project="projects/project2.html">פרויקט 2</button>
+                        <button class="project-download-btn" data-project="projects/project2.html" onclick="openProject('projects/project2.html')">פרויקט 2</button>
                     </div>
                     <div class="project">
                         <img class="project-image" src="assets/projects/project3.png" alt="Project Image">
                         <h3 class="project-title">פרויקט 3</h3>
                         <p class="project-description">תיאור הפרויקט השלישי. זהו פרויקט לדוגמה שמציג את היכולות שלי בתחום הפיתוח.</p>
-                        <button class="project-download-btn" data-project="projects/project3.html">פרויקט 3</button>
+                        <button class="project-download-btn" data-project="projects/project3.html" onclick="openProject('projects/project3.html')">פרויקט 3</button>
                     </div>
                     <div class="project">
                         <img class="project-image" src="assets/projects/project4.png" alt="Project Image">
                         <h3 class="project-title">פרויקט 4</h3>
                         <p class="project-description">תיאור הפרויקט הרביעי. זהו פרויקט לדוגמה שמציג את היכולות שלי בתחום הפיתוח.</p>
-                        <button class="project-download-btn" data-project="projects/project4.html">פרויקט 4</button>
+                        <button class="project-download-btn" data-project="projects/project4.html" onclick="openProject('projects/project4.html')">פרויקט 4</button>
                     </div>
                     <div class="project">
                         <img class="project-image" src="assets/projects/project5.png" alt="Project Image">
                         <h3 class="project-title">פרויקט 5</h3>
                         <p class="project-description">תיאור הפרויקט החמישי. זהו פרויקט לדוגמה שמציג את היכולות שלי בתחום הפיתוח.</p>
-                        <button class="project-download-btn" data-project="projects/project5.html">פרויקט 5</button>
+                        <button class="project-download-btn" data-project="projects/project5.html" onclick="openProject('projects/project5.html')">פרויקט 5</button>
                     </div>
                     <div class="project">
                         <img class="project-image" src="assets/projects/project6.png" alt="Project Image">
                         <h3 class="project-title">פרויקט 6</h3>
                         <p class="project-description">תיאור הפרויקט השישי. זהו פרויקט לדוגמה שמציג את היכולות שלי בתחום הפיתוח.</p>
-                        <button class="project-download-btn" data-project="projects/project6.html">פרויקט 6</button>
+                        <button class="project-download-btn" data-project="projects/project6.html" onclick="openProject('projects/project6.html')">פרויקט 6</button>
+                    </div>
+                </div>
+            
+                <!-- Hidden iframe for loading project -->
+                <iframe id="project-frame" src="" style="width: 100%; height: 600px; border: none; display: none;"></iframe>
+            
+                <!-- Back button to return to project list -->
+                <!-- Back and Open Project Buttons Wrapper -->
+                <div id="project-navigation" style="display: flex; justify-content: center; gap: 10px; margin-top: 20px;">
+                    <button id="back-button" style="display: none;" onclick="goBack()">חזרה</button>
+                    <div id="open-project-buttons" style="display: none;">
+                        <a id="open-project-link" href="" target="_blank">
+                            <button id="open-project-btn">פתח פרויקט</button>
+                        </a>
                     </div>
                 </div>
 
-                <!-- Hidden iframe for loading project -->
-                <iframe id="project-frame" src="" style="width: 100%; height: 600px; border: none; display: none;"></iframe>
-
-                <!-- Back button to return to project list -->
-                <button id="back-button" style="display: none;">חזרה</button>
-
             </section>
+            
+            
 
             <section id="contact" class="contact-section">
                 <h2 class="contact-title">צור קשר</h2>
@@ -171,6 +181,19 @@
                     </div>
                 </div>
             </footer>
+            <!-- Custom Confirmation Modal -->
+            <div id="customModal" class="modal" style="display: none;">
+                <div class="modal-content">
+                  <h3>אישור מעבר</h3>
+                  <p>האם ברצונך לעבור לעמוד זה?</p>
+                  <div class="modal-buttons">
+                    <button id="modalConfirm">כן, עבור לעמוד</button>
+                    <button id="modalCancel">לא, סגור</button>
+                  </div>
+                </div>
+            </div>
+            
+  
             <script src="script.js"></script>
         </body>
 </html>
