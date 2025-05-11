@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    // ----------------------------
-    // Portfolio & Project Display Logic
-    // ----------------------------
     const projectButtons = document.querySelectorAll(".project-download-btn");
     const projectFrame = document.getElementById("project-frame");
     const backButton = document.getElementById("back-button");
@@ -78,66 +75,97 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         }
     });
-
-    // ----------------------------
-    // Modal for "פתח פרוייקט" Navigation
-    // Always trigger modal on button click
-    // ----------------------------
-    const openProjectBtn = document.getElementById("open-project-btn");
-    if (openProjectBtn) {
-        const modal = document.getElementById("customModal");
-        const modalConfirm = document.getElementById("modalConfirm");
-        const modalCancel = document.getElementById("modalCancel");
-        const projectLink = document.getElementById("open-project-link");
-
-        openProjectBtn.addEventListener("click", function (e) {
-            e.preventDefault(); // Prevent immediate navigation
-            modal.style.display = "flex"; // Show modal (centered via flex)
-        });
-
-        // If user confirms, navigate to the project page
-        modalConfirm.addEventListener("click", function () {
-            const projectUrl = projectLink.href;
-            window.location.href = projectUrl;
-        });
-
-        // If user cancels, close the modal
-        modalCancel.addEventListener("click", function () {
-            modal.style.display = "none";
-        });
-
-        // Optional: Close the modal if user clicks outside the modal content
-        window.addEventListener("click", function (event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        });
-    }
 });
 
-// ----------------------------
-// Additional Functions
-// ----------------------------
-function openProject(projectUrl) {
-    // Show the project-related elements
-    document.getElementById("open-project-buttons").style.display = "block";
-    document.getElementById("project-frame").style.display = "block"; // Show the iframe
-    document.getElementById("back-button").style.display = "block"; // Show the back button
+// פונקציונליות חלון המודל – טקסט בעברית
+document.addEventListener('DOMContentLoaded', function() {
+    // אובייקט פרטי המשחקים בעברית
+    const gameDetails = {
+        'hangman': {
+            title: 'איש תלוי',
+            description: 'משחק ניחוש מילים קלאסי שבו עליכם לנחש את המילה הנעלמת לפני שההנגמן מושלם. בדקו את אוצר המילים וכישורי ההסקה שלכם!',
+            image: 'assets/games/hangman.png',
+            github: 'https://github.com/osherb12/hangman',
+            download: 'games/hangman.html',
+            play: 'games/hangman.html'
+        },
+        'minesweeper': {
+            title: 'שולה המוקשים',
+            description: 'משחק פאזל אסטרטגי שבו עליכם לנקות לוח המכיל מוקשים מוסתרים מבלי לגרום לפיצוץ, בהתבסס על רמזים לגבי מספר המוקשים השכנים.',
+            image: 'assets/games/minesweeper.png',
+            github: 'https://github.com/osherb12/minesweeper',
+            download: 'games/minesweeper.html',
+            play: 'games/minesweeper.html'
+        },
+        'snake': {
+            title: 'סנייק',
+            description: 'שלוטו בנחש שאוכל מזון וגדל, אך היזהרו לא לפגוע בקירות או בזנב שלכם! ארקייד קלאסי המאתגר את הרפלקסים.',
+            image: 'assets/games/snake.png',
+            github: 'https://github.com/osherb12/snake',
+            download: 'games/snake.html',
+            play: 'games/snake.html'
+        },
+        'sudoku': {
+            title: 'סודוקו',
+            description: 'מלאו לוח 9×9 במספרים כך שכל שורה, כל עמודה, וכל תת-רשת 3×3 יכילו את כל הספרות 1–9.',
+            image: 'assets/games/sodoku.png',
+            github: 'https://github.com/osherb12/sudoku',
+            download: 'games/sodoku.html',
+            play: 'games/sodoku.html'
+        },
+        'tic-tac-toe': {
+            title: 'איקס-עיגול',
+            description: 'משחק איקס-עיגול קלאסי שבו עליכם ליישר שלוש מהסימנים שלכם בשורה (אופקית, אנכית או אלכסונית) כדי לנצח.',
+            image: 'assets/games/tic-tac-toe.png',
+            github: 'https://github.com/osherb12/tic-tac-toe',
+            download: 'games/tic-tac-toe.html',
+            play: 'games/tic-tac-toe.html'
+        },
+        'trivia': {
+            title: 'טריוויה',
+            description: 'בדקו את הידע שלכם עם שאלות ממגוון קטגוריות. כמה שאלות תענו נכון?',
+            image: 'assets/games/trivia.png',
+            github: 'https://github.com/osherb12/trivia',
+            download: 'games/trivia.html',
+            play: 'games/trivia.html'
+        }
+    };
 
-    // Update the iframe source with the selected project
-    document.getElementById("project-frame").src = projectUrl;
+    // שאר הקוד נשאר כפי שהיה
+    const modalOverlay = document.getElementById('game-modal-overlay');
+    const modal = document.getElementById('game-modal');
+    const modalTitle = document.getElementById('modal-game-title');
+    const modalImg = document.getElementById('modal-game-img');
+    const modalDesc = document.getElementById('modal-game-description');
+    const modalGithub = document.getElementById('modal-github-link');
+    const modalDownload = document.getElementById('modal-download-link');
+    const modalPlay = document.getElementById('modal-play-link');
+    const closeModal = document.querySelector('.close-modal');
 
-    // Update the open project link and button dynamically
-    var projectLink = document.getElementById("open-project-link");
-    projectLink.href = projectUrl;
+    document.querySelectorAll('.game-modal-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const game = this.getAttribute('data-game');
+            const details = gameDetails[game];
+            if (details) {
+                modalTitle.textContent = details.title;
+                modalImg.src = details.image;
+                modalImg.alt = details.title;
+                modalDesc.textContent = details.description;
+                modalGithub.href = details.github;
+                modalDownload.href = details.download;
+                modalPlay.href = details.play;
+                modalOverlay.style.display = 'flex';
+            }
+        });
+    });
 
-    var projectButton = document.getElementById("open-project-btn");
-    projectButton.innerText = `פתח פרוייקט`;
-}
-
-function goBack() {
-    // Hide the iframe and the open project button
-    document.getElementById("project-frame").style.display = "none";
-    document.getElementById("open-project-buttons").style.display = "none";
-    document.getElementById("back-button").style.display = "none"; // Hide the back button
-}
+    closeModal.addEventListener('click', () => modalOverlay.style.display = 'none');
+    modalOverlay.addEventListener('click', e => {
+        if (e.target === modalOverlay) modalOverlay.style.display = 'none';
+    });
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modalOverlay.style.display === 'flex') {
+            modalOverlay.style.display = 'none';
+        }
+    });
+});
