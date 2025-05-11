@@ -528,7 +528,7 @@ footer {
 .footer-bottom p {
     margin: 0 20px;
 }
-#back-button, #open-project-btn {
+#back-button {
     padding: 10px 20px;
     font-family: 'Heebo', sans-serif;
     font-size: 1rem;
@@ -543,9 +543,7 @@ footer {
     display: block;
 }
 
-
-
-#back-button:hover, #open-project-btn:hover {
+#back-button:hover {
     background-color: #17c4d0; /* Slightly darker blue on hover */
     transform: translateY(-3px); /* Lift effect */
 }
@@ -563,110 +561,186 @@ footer {
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a shadow effect */
     overflow: hidden;
-}/* The modal overlay */
-.modal {
-    display: none; /* Hidden by default */
+}
+/* Full Updated Modal Styles */
+.modal-overlay {
+    display: none;
     position: fixed;
-    z-index: 1000;
-    left: 0;
     top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5); /* Black with transparency */
-}
-
-/* Modal content box */
-.modal-content {
-    background-color: #fff;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px;
-    text-align: center;
-    border-radius: 5px;
-}
-
-
-
-/* The modal overlay */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed;
-    z-index: 1100;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Darker semi-transparent overlay */
-    display: flex;
-    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1001; /* Above other content */
     justify-content: center;
+    align-items: center;
 }
 
-/* Modal content box */
-.modal-content {
-    background-color: #fff;
-    border-radius: 20px; /* Consistent rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    padding: 30px;
-    width: 90%;
-    max-width: 400px;
+.modal {
+    background-color: #ffffff;
+    border-radius: 20px;            /* Match project cards */
+    width: 80%;                     /* Reduced from 90% */
+    max-width: 400px;               /* Reduced from 600px */
+    padding: 20px;                  /* Reduced from 30px */
+    position: relative;
+    direction: rtl;                 /* RTL text */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     text-align: center;
 }
 
-/* Modal header and message */
-.modal-content h3 {
-    font-family: 'Heebo', sans-serif;
-    font-size: 1.5rem;
+.close-modal {
+    position: absolute;
+    top: 12px;                      /* Slightly closer */
+    left: 16px;
+    font-size: 24px;                /* Smaller */
+    cursor: pointer;
     color: #2C2C2C;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #1AE0EC;
+    transform: scale(1.1);
+}
+
+.modal-content {
+    font-family: 'Heebo', sans-serif;
+    color: #2C2C2C;
+}
+
+#modal-game-title {
+    font-size: 1.6rem;              /* Slightly smaller */
+    margin-bottom: 10px;            /* Tighter */
+}
+
+#modal-game-img {
+    max-width: 100%;
+    max-height: 200px;              /* Cap image height */
+    height: auto;
+    border-radius: 10px;
+    margin: 15px 0;                 /* Reduced vertical margins */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+#modal-game-img:hover {
+    transform: scale(1.02);
+}
+
+#modal-game-description {
+    font-size: 0.95rem;             /* Slightly smaller */
+    line-height: 1.6;
+    margin-bottom: 15px;
+    padding: 0 5px;                 /* Reduced horizontal padding */
+}
+
+.modal-tech-logos {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
     margin-bottom: 20px;
 }
 
-.modal-content p {
-    font-family: 'Heebo', sans-serif;
-    font-size: 1rem;
-    color: #2C2C2C;
-    margin-bottom: 20px;
+.modal-tech-logos .tech-icon {
+    width: 40px;
+    height: auto;
 }
 
-/* Container for buttons */
 .modal-buttons {
     display: flex;
-    gap: 20px;
     justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
-/* Style buttons as needed */
-.modal-buttons button {
+.modal-buttons a {
+    text-decoration: none;
+}
+
+.modal-btn {
+    padding: 8px 16px;              /* Reduced padding */
     font-family: 'Heebo', sans-serif;
-    font-size: 1rem;
-    padding: 10px 20px;
+    font-size: 0.95rem;
+    color: #ffffff;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Confirmation button */
-#modalConfirm {
+.modal-btn.github {
+    background-color: #24292e;
+}
+
+.modal-btn.download,
+.modal-btn.play {
     background-color: #1AE0EC;
-    color: #fff;
 }
 
-#modalConfirm:hover {
+.modal-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.modal-btn.github:hover {
+    background-color: #3a3f45;
+}
+
+.modal-btn.download:hover,
+.modal-btn.play:hover {
     background-color: #17c4d0;
-    transform: translateY(-3px);
 }
 
-/* Cancel button */
-#modalCancel {
-    background-color: #ccc;
-    color: #2C2C2C;
+.game-modal-btn {
+    padding: 8px 16px;              /* Reduced padding */
+    font-family: 'Heebo', sans-serif;
+    font-size: 0.95rem;
+    color: #ffffff;
+    background-color: #1AE0EC;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-#modalCancel:hover {
-    background-color: #bbb;
-    transform: translateY(-3px);
+.game-modal-btn:hover {
+    background-color: #17c4d0;
+    transform: translateY(-2px);
+}
+
+/* Accessibility focus outlines */
+.modal-btn:focus,
+.game-modal-btn:focus,
+.close-modal:focus {
+    outline: 2px solid #1AE0EC;
+    outline-offset: 2px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .modal {
+        width: 90%;                 /* Slightly wider on small screens */
+        max-width: 360px;
+        padding: 15px;
+    }
+
+    #modal-game-img {
+        max-height: 150px;
+    }
+
+    #modal-game-title {
+        font-size: 1.3rem;
+    }
+
+    .modal-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal-btn {
+        width: 100%;
+    }
 }
