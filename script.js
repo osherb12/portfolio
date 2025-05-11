@@ -110,8 +110,8 @@ document.addEventListener('DOMContentLoaded', function() {
             description: 'מלאו לוח 9×9 במספרים כך שכל שורה, כל עמודה, וכל תת-רשת 3×3 יכילו את כל הספרות 1–9.',
             image: 'assets/games/sodoku.png',
             github: 'https://github.com/osherb12/soduku',
-            download: 'games/sodoku.html',
-            play: 'games/sodoku.html'
+            download: 'games/soduku.html',
+            play: 'games/soduku.html'
         },
         'tic-tac-toe': {
             title: 'איקס-עיגול',
