@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beautiful Snake Game – Fixed</title>
+    <style>
+        :root{
+            --bg:#1e1e2f;
+            --snake:#76ff03;
+            --food:#ff1744;
+            --grid:#323248;
+            --border:#fff;
+        }
+        *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial,Helvetica,sans-serif}
+        body{
+            display:flex;align-items:center;justify-content:center;
+            height:100vh;background:var(--bg);
+        }
+        .game-container{
+            position:relative;padding:1rem;
+            background:rgba(255,255,255,.05);backdrop-filter:blur(5px);
+            border:2px solid var(--border);border-radius:1rem;
+        }
+        canvas{display:block;border-radius:.5rem;background:var(--bg)}
+        .score{
+            position:absolute;top:1rem;left:50%;transform:translateX(-50%);
+            color:#fff;font-size:1.2rem;letter-spacing:1px;
+        }
+        .controls{display:flex;justify-content:center;gap:1rem;margin-top:1rem}
+        button{
+            padding:.5rem 1rem;font-size:1rem;cursor:pointer;border:none;
+            border-radius:.5rem;background:#29294d;color:#fff;transition:.3s;
+        }
+        button:hover{background:#3e3e6b}
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <div id="score" class="score">Score: 0</div>
+    <canvas id="game" width="400" height="400"></canvas>
+    <div class="controls">
+        <button id="start">Start</button>
+        <button id="reset">Reset</button>
+    </div>
+</div>
+
+<script>
+    /* ---------- helpers ---------- */
+    const $  = sel => document.querySelector(sel);
+    const varColor = name => getComputedStyle(document.documentElement)
+        .getPropertyValue(name).trim();
+
+    /* ---------- constants ---------- */
+    const canvas   = $('#game');
+    const ctx      = canvas.getContext('2d');
+    const scoreEl  = $('#score');
+    const startBtn = $('#start');
+    const resetBtn = $('#reset');
+
+    const size   = 20;                    // grid cell (px)
+    const tiles  = canvas.width / size;   // 20×20 board
+    const fps    = 8;                     // frames‑per‑second
+
+    /* ---------- game state ---------- */
+    let snake, velocity, food, score, timer;
+
+    /* ---------- initialise ---------- */
+    function init(){
+        snake    = [{x:10,y:10}];
+        velocity = {x:0,y:0};
+        food     = {x:15,y:15};
+        score    = 0;
+        scoreEl.textContent = 'Score: 0';
+        placeFood();
+        draw();            // one render so the board isn’t empty
+    }
+
+    /* ---------- main loop ---------- */
+    function loop(){
+        update();
+        draw();
+    }
+
+    /* ---------- update ---------- */
+    function update(){
+        const head = {x:snake[0].x + velocity.x, y:snake[0].y + velocity.y};
+
+        /* wrap around edges */
+        head.x = (head.x + tiles) % tiles;
+        head.y = (head.y + tiles) % tiles;
+
+        /* self‑collision */
+        if (snake.some(seg => seg.x === head.x && seg.y === head.y)){
+            return endGame();
+        }
+
+        snake.unshift(head);
+
+        /* eat food */
+        if (head.x === food.x && head.y === food.y){
+            score++;
+            scoreEl.textContent = `Score: ${score}`;
+            placeFood();
+        }else{
+            snake.pop();
+        }
+    }
+
+    /* ---------- render ---------- */
+    function draw(){
+        /* background */
+        ctx.fillStyle = varColor('--bg');
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+
+        /* board grid */
+        ctx.strokeStyle = varColor('--grid');
+        ctx.lineWidth = 1;
+        for(let i=0;i<=tiles;i++){
+            ctx.beginPath();
+            ctx.moveTo(i*size,0); ctx.lineTo(i*size,canvas.height); ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(0,i*size); ctx.lineTo(canvas.width,i*size); ctx.stroke();
+        }
+
+        /* snake */
+        ctx.fillStyle = varColor('--snake');
+        snake.forEach(seg=>{
+            ctx.fillRect(seg.x*size, seg.y*size, size-2, size-2);
+        });
+
+        /* food */
+        ctx.fillStyle = varColor('--food');
+        ctx.fillRect(food.x*size, food.y*size, size-2, size-2);
+    }
+
+    /* ---------- food placement ---------- */
+    function placeFood(){
+        do{
+            food.x = Math.floor(Math.random()*tiles);
+            food.y = Math.floor(Math.random()*tiles);
+        }while(snake.some(seg=>seg.x===food.x && seg.y===food.y));
+    }
+
+    /* ---------- end game ---------- */
+    function endGame(){
+        clearInterval(timer);
+        alert(`Game Over!\nYour score: ${score}`);
+    }
+
+    /* ---------- controls ---------- */
+    window.addEventListener('keydown', e=>{
+        const {x,y} = velocity;                 // current direction
+        switch(e.key){
+            case 'ArrowUp'   : if(y!== 1) velocity={x:0, y:-1}; break;
+            case 'ArrowDown' : if(y!==-1) velocity={x:0, y: 1}; break;
+            case 'ArrowLeft' : if(x!== 1) velocity={x:-1, y:0}; break;
+            case 'ArrowRight': if(x!==-1) velocity={x: 1, y:0}; break;
+        }
+    });
+
+    startBtn.addEventListener('click', ()=>{
+        clearInterval(timer);                  // don’t stack timers
+        if(velocity.x===0 && velocity.y===0){  // first start
+            velocity = {x:1,y:0};
+        }
+        timer = setInterval(loop, 1000/fps);
+    });
+
+    resetBtn.addEventListener('click', ()=>{
+        clearInterval(timer);
+        init();
+    });
+
+    /* ---------- kick off ---------- */
+    init();
+</script>
+</body>
+</html>

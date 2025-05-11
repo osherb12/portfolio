@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hangman Game – Fixed & Improved</title>
+    <style>
+        /* --- layout --- */
+        *{box-sizing:border-box}
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: #f0f0f0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .game-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            max-width: 440px;
+            width: 100%;
+            text-align: center;
+        }
+        h1{margin-top:0;color:#333}
+        pre {
+            background: #222;
+            color: #0f0;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            margin: 0 auto;
+            width: fit-content;
+        }
+        .word {
+            letter-spacing: .25em;
+            font-size: 1.5rem;
+            margin: 18px 0;
+            color: #333;
+        }
+        .alphabet {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            margin-inline:auto;
+            max-width: 360px;
+        }
+        .alphabet button {
+            width: 32px;
+            height: 32px;
+            border: none;
+            background: #eee;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background .3s;
+        }
+        .alphabet button:hover:not(:disabled){background:#ddd}
+        .alphabet button:disabled{background:#bbb;cursor:not-allowed}
+        .message{font-size:1.125rem;margin-top:15px;color:#555}
+        .reset{
+            margin-top:15px;
+            padding:10px 24px;
+            font-size:1rem;
+            border:none;
+            background:#3498db;
+            color:#fff;
+            border-radius:6px;
+            cursor:pointer;
+            transition:background .3s;
+        }
+        .reset:hover{background:#2980b9}
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <h1>Hangman</h1>
+    <pre id="ascii"></pre>
+    <div class="word" id="word"></div>
+    <div class="alphabet" id="alphabet"></div>
+    <div class="message" id="message"></div>
+    <button class="reset" id="reset">Restart</button>
+</div>
+
+<script>
+    (()=>{
+        /* ------------------------- state ------------------------- */
+        const words = ["JAVASCRIPT","HANGMAN","CSS","HTML","CODING","PROGRAM","CHALLENGE","COMPUTER"];
+        const states = [
+            ` +---+
+ |   |
+     |
+     |
+     |
+     |
+=========`,
+            ` +---+
+ |   |
+ O   |
+     |
+     |
+     |
+=========`,
+            ` +---+
+ |   |
+ O   |
+ |   |
+     |
+     |
+=========`,
+            ` +---+
+ |   |
+ O   |
+/|   |
+     |
+     |
+=========`,
+            ` +---+
+ |   |
+ O   |
+/|\\  |
+     |
+     |
+=========`,
+            ` +---+
+ |   |
+ O   |
+/|\\  |
+/    |
+     |
+=========`,
+            ` +---+
+ |   |
+ O   |
+/|\\  |
+/ \\  |
+     |
+=========`
+        ];
+
+        const maxWrong = states.length - 1; // ==> avoid magic number 6
+
+        /* ------------------------- elements ---------------------- */
+        const asciiEl = document.getElementById("ascii");
+        const wordEl   = document.getElementById("word");
+        const alphabetEl = document.getElementById("alphabet");
+        const messageEl  = document.getElementById("message");
+        const resetBtn   = document.getElementById("reset");
+
+        /* ------------------------- variables --------------------- */
+        let selectedWord, guessedLetters, wrongGuesses;
+
+        /* ------------------------- functions --------------------- */
+        function init(){
+            selectedWord  = words[Math.floor(Math.random()*words.length)];
+            guessedLetters= [];
+            wrongGuesses  = 0;
+            messageEl.textContent = "";
+            buildAlphabet();
+            updateDisplay();
+        }
+
+        function buildAlphabet(){
+            alphabetEl.innerHTML = "";
+            "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(l=>{
+                const btn=document.createElement("button");
+                btn.textContent=l;
+                btn.addEventListener("click",()=>handleGuess(l,btn));
+                alphabetEl.appendChild(btn);
+            });
+        }
+
+        function handleGuess(rawLetter, btnRef){
+            const letter = rawLetter.toUpperCase();
+            if(guessedLetters.includes(letter)|| wrongGuesses>=maxWrong) return; // safety
+
+            if(btnRef) btnRef.disabled = true; // disable clicked button
+
+            if(selectedWord.includes(letter)){
+                guessedLetters.push(letter);
+            } else {
+                wrongGuesses++;
+            }
+            updateDisplay();
+        }
+
+        function updateDisplay(){
+            asciiEl.textContent = states[wrongGuesses];
+            wordEl.textContent  = selectedWord.split("").map(l=> guessedLetters.includes(l)? l : "_").join(" ");
+
+            // win
+            if(!wordEl.textContent.includes("_")){
+                messageEl.textContent = "You won! 🎉";
+                disableAlphabet();
+                return;
+            }
+            // lose
+            if(wrongGuesses>=maxWrong){
+                messageEl.textContent = `You lost! The word was ${selectedWord}`;
+                wordEl.textContent    = selectedWord.split("").join(" "); // reveal
+                disableAlphabet();
+            }
+        }
+
+        function disableAlphabet(){
+            alphabetEl.querySelectorAll("button").forEach(b=>b.disabled=true);
+        }
+
+        /* --------------- keyboard support ----------------- */
+        document.addEventListener("keydown",e=>{
+            const key = e.key.toUpperCase();
+            if(key<"A"||key>"Z") return;
+            const btn = [...alphabetEl.children].find(b=>b.textContent===key);
+            if(btn && !btn.disabled){
+                handleGuess(key,btn);
+            }
+        });
+
+        /* --------------- restart --------------------------- */
+        resetBtn.addEventListener("click", init);
+
+        /* --------------- boot ------------------------------ */
+        init();
+    })();
+</script>
+</body>
+</html>

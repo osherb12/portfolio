@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>משחק טריוויה ישראלי</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            background: #f1f1f1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .quiz-container {
+            background: white;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .question {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .answers {
+            list-style: none;
+            padding: 0;
+        }
+        .answers li {
+            margin: 8px 0;
+        }
+        .answers button {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background: #fff;
+            cursor: pointer;
+            transition: background 0.3s, border-color 0.3s;
+            text-align: right;
+        }
+        .answers button:hover {
+            background: #f9f9f9;
+            border-color: #4CAF50;
+        }
+        .answers button.correct {
+            background: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        .answers button.wrong {
+            background: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            flex-direction: row-reverse;
+        }
+        .controls button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 5px;
+            background: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .controls button:hover {
+            background: #45a049;
+        }
+        .score {
+            font-size: 1.5em;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="quiz-container">
+    <div id="question" class="question"></div>
+    <ul id="answers" class="answers"></ul>
+    <div class="controls">
+        <button id="next">הבא</button>
+        <button id="restart">התחלה מחדש</button>
+    </div>
+    <div id="score" class="score"></div>
+</div>
+
+<script>
+    const questions = [
+        {
+            question: "מהי עיר הבירה של ישראל?",
+            answers: [
+                { text: "ירושלים", correct: true },
+                { text: "תל אביב", correct: false },
+                { text: "חיפה", correct: false },
+                { text: "באר שבע", correct: false }
+            ]
+        },
+        {
+            question: "באיזה שנה הוקמה מדינת ישראל?",
+            answers: [
+                { text: "1948", correct: true },
+                { text: "1950", correct: false },
+                { text: "1945", correct: false },
+                { text: "1952", correct: false }
+            ]
+        },
+        {
+            question: "איזו שפה רשמית לצד עברית קיימת בישראל?",
+            answers: [
+                { text: "אנגלית", correct: false },
+                { text: "ערבית", correct: true },
+                { text: "צרפתית", correct: false },
+                { text: "ספרדית", correct: false }
+            ]
+        },
+        {
+            question: "מי נחשב אבי המדינה?",
+            answers: [
+                { text: "דוד בן-גוריון", correct: true },
+                { text: "הרצל", correct: false },
+                { text: "מצדוק שמעוני", correct: false },
+                { text: "יהודה לב", correct: false }
+            ]
+        },
+        {
+            question: "מי כיהן כראש ממשלת ישראל בשנת 2025?",
+            answers: [
+                { text: "בנימין נתניהו", correct: true },
+                { text: "יאיר לפיד", correct: false },
+                { text: "נפתלי בנט", correct: false },
+                { text: "גדעון סער", correct: false }
+            ]
+        }
+    ];
+
+    let currentIndex = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById("question");
+    const answersEl = document.getElementById("answers");
+    const nextBtn = document.getElementById("next");
+    const restartBtn = document.getElementById("restart");
+    const scoreEl = document.getElementById("score");
+
+    function startQuiz() {
+        currentIndex = 0;
+        score = 0;
+        scoreEl.textContent = "";
+        shuffleQuestions();
+        showQuestion();
+    }
+
+    function shuffleQuestions() {
+        questions.sort(() => Math.random() - 0.5);
+    }
+
+    function showQuestion() {
+        resetState();
+        const q = questions[currentIndex];
+        questionEl.textContent = q.question;
+        q.answers.forEach(ans => {
+            const button = document.createElement("button");
+            button.textContent = ans.text;
+            button.classList.add("answer-btn");
+            if (ans.correct) button.dataset.correct = ans.correct;
+            button.addEventListener("click", selectAnswer);
+            const li = document.createElement("li");
+            li.appendChild(button);
+            answersEl.appendChild(li);
+        });
+    }
+
+    function resetState() {
+        nextBtn.style.display = "none";
+        while (answersEl.firstChild) {
+            answersEl.removeChild(answersEl.firstChild);
+        }
+    }
+
+    function selectAnswer(e) {
+        const selectedBtn = e.target;
+        const correct = selectedBtn.dataset.correct === "true";
+        if (correct) {
+            selectedBtn.classList.add("correct");
+            score++;
+        } else {
+            selectedBtn.classList.add("wrong");
+            Array.from(document.getElementsByClassName("answer-btn")).forEach(btn => {
+                if (btn.dataset.correct === "true") btn.classList.add("correct");
+            });
+        }
+        Array.from(answersEl.getElementsByTagName("button")).forEach(btn => btn.disabled = true);
+        nextBtn.style.display = "inline-block";
+    }
+
+    function showScore() {
+        resetState();
+        questionEl.textContent = "החידון הושלם!";
+        scoreEl.textContent = `הציון שלך: ${score} / ${questions.length}`;
+        nextBtn.style.display = "none";
+    }
+
+    nextBtn.addEventListener("click", () => {
+        currentIndex++;
+        if (currentIndex < questions.length) {
+            showQuestion();
+        } else {
+            showScore();
+        }
+    });
+
+    restartBtn.addEventListener("click", startQuiz);
+
+    startQuiz();
+</script>
+</body>
+</html>
