@@ -98,53 +98,63 @@
 </div>
 
 <script>
-    const questions = [
-        {
-            question: "מהי עיר הבירה של ישראל?",
-            answers: [
-                { text: "ירושלים", correct: true },
-                { text: "תל אביב", correct: false },
-                { text: "חיפה", correct: false },
-                { text: "באר שבע", correct: false }
-            ]
-        },
-        {
-            question: "באיזה שנה הוקמה מדינת ישראל?",
-            answers: [
-                { text: "1948", correct: true },
-                { text: "1950", correct: false },
-                { text: "1945", correct: false },
-                { text: "1952", correct: false }
-            ]
-        },
-        {
-            question: "איזו שפה רשמית לצד עברית קיימת בישראל?",
-            answers: [
-                { text: "אנגלית", correct: false },
-                { text: "ערבית", correct: true },
-                { text: "צרפתית", correct: false },
-                { text: "ספרדית", correct: false }
-            ]
-        },
-        {
-            question: "מי נחשב אבי המדינה?",
-            answers: [
-                { text: "דוד בן-גוריון", correct: true },
-                { text: "הרצל", correct: false },
-                { text: "מצדוק שמעוני", correct: false },
-                { text: "יהודה לב", correct: false }
-            ]
-        },
-        {
-            question: "מי כיהן כראש ממשלת ישראל בשנת 2025?",
-            answers: [
-                { text: "בנימין נתניהו", correct: true },
-                { text: "יאיר לפיד", correct: false },
-                { text: "נפתלי בנט", correct: false },
-                { text: "גדעון סער", correct: false }
-            ]
-        }
-    ];
+   const questions = [
+    {
+        question: "מהי עיר הבירה של ישראל?",
+        answers: [
+            { text: "ירושלים", correct: true },
+            { text: "תל אביב", correct: false },
+            { text: "חיפה", correct: false },
+            { text: "באר שבע", correct: false }
+        ]
+    },
+    {
+        question: "באיזה שנה הוקמה מדינת ישראל?",
+        answers: [
+            { text: "1948", correct: true },
+            { text: "1950", correct: false },
+            { text: "1945", correct: false },
+            { text: "1952", correct: false }
+        ]
+    },
+    {
+        question: "מי נחשב אבי המדינה?",
+        answers: [
+            { text: "דוד בן-גוריון", correct: true },
+            { text: "הרצל", correct: false },
+            { text: "מצדוק שמעוני", correct: false },
+            { text: "יהודה לב", correct: false }
+        ]
+    },
+    {
+        question: "כמה איים יש באי המלח?",
+        answers: [
+            { text: "4", correct: false },
+            { text: "5", correct: false },
+            { text: "2", correct: true },
+            { text: "6", correct: false }
+        ]
+    },
+    {
+        question: "מי היה הנשיא הראשון של מדינת ישראל?",
+        answers: [
+            { text: "יצחק בן צבי", correct: true },
+            { text: "החיים ויצמן", correct: false },
+            { text: "מנחם בגין", correct: false },
+            { text: "גולדה מאיר", correct: false }
+        ]
+    },
+    {
+        question: "איפה נמצא הים המלח?",
+        answers: [
+            { text: "בדרום ישראל", correct: false },
+            { text: "במרכז הארץ", correct: false },
+            { text: "בצפון הארץ", correct: false },
+            { text: "במזרח ישראל", correct: true }
+        ]
+    }
+];
+
 
     let currentIndex = 0;
     let score = 0;
