@@ -1,231 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Hangman Game – Fixed & Improved</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sudoku</title>
     <style>
-        /* --- layout --- */
-        *{box-sizing:border-box}
         body {
+            font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background: #f0f0f0;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        }
-        .game-container {
-            background: #fff;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 440px;
-            width: 100%;
-            text-align: center;
+            background: #f4f4f4;
         }
-        h1{margin-top:0;color:#333}
-        pre {
-            background: #222;
-            color: #0f0;
-            padding: 10px;
-            border-radius: 5px;
-            font-family: monospace;
-            margin: 0 auto;
-            width: fit-content;
-        }
-        .word {
-            letter-spacing: .25em;
-            font-size: 1.5rem;
-            margin: 18px 0;
+        h1 {
             color: #333;
         }
-        .alphabet {
+        #sudoku-grid {
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        #sudoku-grid input {
+            width: 40px;
+            height: 40px;
+            text-align: center;
+            font-size: 1.2em;
+            border: 1px solid #999;
+            outline: none;
+            transition: background 0.3s;
+        }
+        /* thicker lines between 3x3 blocks */
+        #sudoku-grid td {
+            padding: 0;
+        }
+        #sudoku-grid tr:nth-child(3n) td input {
+            border-bottom: 2px solid #333;
+        }
+        #sudoku-grid tr:nth-child(3n+1) td input {
+            border-bottom: 1px solid #999;
+        }
+        #sudoku-grid td:nth-child(3n) input {
+            border-right: 2px solid #333;
+        }
+        #sudoku-grid td:nth-child(3n+1) input {
+            border-right: 1px solid #999;
+        }
+        #controls {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 6px;
-            margin-inline:auto;
-            max-width: 360px;
+            gap: 10px;
+            margin-bottom: 20px;
         }
-        .alphabet button {
-            width: 32px;
-            height: 32px;
-            border: none;
-            background: #eee;
-            border-radius: 4px;
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
             cursor: pointer;
-            font-size: 16px;
-            transition: background .3s;
+            border: none;
+            border-radius: 5px;
+            background: #4CAF50;
+            color: white;
+            transition: background 0.3s;
         }
-        .alphabet button:hover:not(:disabled){background:#ddd}
-        .alphabet button:disabled{background:#bbb;cursor:not-allowed}
-        .message{font-size:1.125rem;margin-top:15px;color:#555}
-        .reset{
-            margin-top:15px;
-            padding:10px 24px;
-            font-size:1rem;
-            border:none;
-            background:#3498db;
-            color:#fff;
-            border-radius:6px;
-            cursor:pointer;
-            transition:background .3s;
+        button:hover {
+            background: #45a049;
         }
-        .reset:hover{background:#2980b9}
+        .error {
+            background: #fdd;
+        }
+        .solution {
+            background: #d4edda;
+        }
     </style>
 </head>
 <body>
-<div class="game-container">
-    <h1>Hangman</h1>
-    <pre id="ascii"></pre>
-    <div class="word" id="word"></div>
-    <div class="alphabet" id="alphabet"></div>
-    <div class="message" id="message"></div>
-    <button class="reset" id="reset">Restart</button>
+<h1>Sudoku</h1>
+<div id="controls">
+    <button id="new-game">New Game</button>
+    <button id="check">Check</button>
+    <button id="show-solution">Show Solution</button>
 </div>
-
+<table id="sudoku-grid"></table>
 <script>
-    (()=>{
-        /* ------------------------- state ------------------------- */
-        const words = ["JAVASCRIPT","HANGMAN","CSS","HTML","CODING","PROGRAM","CHALLENGE","COMPUTER"];
-        const states = [
-            ` +---+
- |   |
-     |
-     |
-     |
-     |
-=========`,
-            ` +---+
- |   |
- O   |
-     |
-     |
-     |
-=========`,
-            ` +---+
- |   |
- O   |
- |   |
-     |
-     |
-=========`,
-            ` +---+
- |   |
- O   |
-/|   |
-     |
-     |
-=========`,
-            ` +---+
- |   |
- O   |
-/|\\  |
-     |
-     |
-=========`,
-            ` +---+
- |   |
- O   |
-/|\\  |
-/    |
-     |
-=========`,
-            ` +---+
- |   |
- O   |
-/|\\  |
-/ \\  |
-     |
-=========`
-        ];
+    const GRID_SIZE = 9;
+    const EMPTY = 0;
+    let solution = [];
+    let puzzle = [];
 
-        const maxWrong = states.length - 1; // ==> avoid magic number 6
+    const gridEl = document.getElementById('sudoku-grid');
+    const newGameBtn = document.getElementById('new-game');
+    const checkBtn = document.getElementById('check');
+    const showSolutionBtn = document.getElementById('show-solution');
 
-        /* ------------------------- elements ---------------------- */
-        const asciiEl = document.getElementById("ascii");
-        const wordEl   = document.getElementById("word");
-        const alphabetEl = document.getElementById("alphabet");
-        const messageEl  = document.getElementById("message");
-        const resetBtn   = document.getElementById("reset");
-
-        /* ------------------------- variables --------------------- */
-        let selectedWord, guessedLetters, wrongGuesses;
-
-        /* ------------------------- functions --------------------- */
-        function init(){
-            selectedWord  = words[Math.floor(Math.random()*words.length)];
-            guessedLetters= [];
-            wrongGuesses  = 0;
-            messageEl.textContent = "";
-            buildAlphabet();
-            updateDisplay();
+    function isSafe(grid, row, col, num) {
+        for (let x = 0; x < GRID_SIZE; x++) {
+            if (grid[row][x] === num || grid[x][col] === num) return false;
         }
+        const startRow = row - row % 3;
+        const startCol = col - col % 3;
+        for (let r = 0; r < 3; r++)
+            for (let c = 0; c < 3; c++)
+                if (grid[startRow + r][startCol + c] === num) return false;
+        return true;
+    }
 
-        function buildAlphabet(){
-            alphabetEl.innerHTML = "";
-            "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("").forEach(l=>{
-                const btn=document.createElement("button");
-                btn.textContent=l;
-                btn.addEventListener("click",()=>handleGuess(l,btn));
-                alphabetEl.appendChild(btn);
-            });
-        }
-
-        function handleGuess(rawLetter, btnRef){
-            const letter = rawLetter.toUpperCase();
-            if(guessedLetters.includes(letter)|| wrongGuesses>=maxWrong) return; // safety
-
-            if(btnRef) btnRef.disabled = true; // disable clicked button
-
-            if(selectedWord.includes(letter)){
-                guessedLetters.push(letter);
-            } else {
-                wrongGuesses++;
-            }
-            updateDisplay();
-        }
-
-        function updateDisplay(){
-            asciiEl.textContent = states[wrongGuesses];
-            wordEl.textContent  = selectedWord.split("").map(l=> guessedLetters.includes(l)? l : "_").join(" ");
-
-            // win
-            if(!wordEl.textContent.includes("_")){
-                messageEl.textContent = "You won! 🎉";
-                disableAlphabet();
-                return;
-            }
-            // lose
-            if(wrongGuesses>=maxWrong){
-                messageEl.textContent = `You lost! The word was ${selectedWord}`;
-                wordEl.textContent    = selectedWord.split("").join(" "); // reveal
-                disableAlphabet();
+    function fillGrid(grid) {
+        for (let r = 0; r < GRID_SIZE; r++) {
+            for (let c = 0; c < GRID_SIZE; c++) {
+                if (grid[r][c] === EMPTY) {
+                    const nums = shuffle([...Array(GRID_SIZE).keys()].map(n => n + 1));
+                    for (let num of nums) {
+                        if (isSafe(grid, r, c, num)) {
+                            grid[r][c] = num;
+                            if (fillGrid(grid)) return true;
+                            grid[r][c] = EMPTY;
+                        }
+                    }
+                    return false;
+                }
             }
         }
+        return true;
+    }
 
-        function disableAlphabet(){
-            alphabetEl.querySelectorAll("button").forEach(b=>b.disabled=true);
+    function shuffle(arr) {
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
         }
+        return arr;
+    }
 
-        /* --------------- keyboard support ----------------- */
-        document.addEventListener("keydown",e=>{
-            const key = e.key.toUpperCase();
-            if(key<"A"||key>"Z") return;
-            const btn = [...alphabetEl.children].find(b=>b.textContent===key);
-            if(btn && !btn.disabled){
-                handleGuess(key,btn);
+    function generatePuzzle(removals = 40) {
+        solution = Array.from({ length: GRID_SIZE }, () => Array(GRID_SIZE).fill(EMPTY));
+        fillGrid(solution);
+        puzzle = solution.map(row => [...row]);
+        let count = removals;
+        while (count > 0) {
+            const r = Math.floor(Math.random() * GRID_SIZE);
+            const c = Math.floor(Math.random() * GRID_SIZE);
+            if (puzzle[r][c] !== EMPTY) {
+                puzzle[r][c] = EMPTY;
+                count--;
             }
+        }
+    }
+
+    function buildGrid() {
+        gridEl.innerHTML = '';
+        for (let r = 0; r < GRID_SIZE; r++) {
+            const rowEl = document.createElement('tr');
+            for (let c = 0; c < GRID_SIZE; c++) {
+                const td = document.createElement('td');
+                const input = document.createElement('input');
+                input.maxLength = 1;
+                input.type = 'text';
+                input.dataset.row = r;
+                input.dataset.col = c;
+                const val = puzzle[r][c];
+                if (val !== EMPTY) {
+                    input.value = val;
+                    input.disabled = true;
+                    input.style.background = '#eee';
+                }
+                input.addEventListener('input', () => {
+                    input.value = input.value.replace(/[^1-9]/g, '');
+                });
+                td.appendChild(input);
+                rowEl.appendChild(td);
+            }
+            gridEl.appendChild(rowEl);
+        }
+    }
+
+    function checkSolution() {
+        document.querySelectorAll('#sudoku-grid input').forEach(i => i.classList.remove('error'));
+        let valid = true;
+        for (let r = 0; r < GRID_SIZE; r++) {
+            for (let c = 0; c < GRID_SIZE; c++) {
+                const input = document.querySelector(`input[data-row="${r}"][data-col="${c}"]`);
+                const val = parseInt(input.value) || EMPTY;
+                if (val === EMPTY || val !== solution[r][c]) {
+                    if (!input.disabled) input.classList.add('error');
+                    valid = false;
+                }
+            }
+        }
+        alert(valid ? 'Congratulations! You solved it!' : 'There are errors in your solution!');
+    }
+
+    function showSolution() {
+        document.querySelectorAll('#sudoku-grid input').forEach(input => {
+            const r = parseInt(input.dataset.row);
+            const c = parseInt(input.dataset.col);
+            input.value = solution[r][c];
+            input.disabled = true;
+            input.classList.add('solution');
         });
+    }
 
-        /* --------------- restart --------------------------- */
-        resetBtn.addEventListener("click", init);
+    newGameBtn.addEventListener('click', () => {
+        generatePuzzle();
+        buildGrid();
+    });
+    checkBtn.addEventListener('click', checkSolution);
+    showSolutionBtn.addEventListener('click', showSolution);
 
-        /* --------------- boot ------------------------------ */
-        init();
-    })();
+    // initialize first game
+    generatePuzzle();
+    buildGrid();
 </script>
 </body>
 </html>
