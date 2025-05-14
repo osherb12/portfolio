@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'איש תלוי',
             description: 'משחק ניחוש מילים קלאסי שבו עליכם לנחש את המילה הנעלמת לפני שההנגמן מושלם. בדקו את אוצר המילים וכישורי ההסקה שלכם!',
             image: 'assets/games/hangman.png',
-            github: 'https://github.com/osherb12/hangman',
+            github: 'https://github.com/osherb12/portfolio/blob/main/games/hangman.html',
             download: 'games/hangman.html',
             play: 'games/hangman.html'
         },
@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'שולה המוקשים',
             description: 'משחק פאזל אסטרטגי שבו עליכם לנקות לוח המכיל מוקשים מוסתרים מבלי לגרום לפיצוץ, בהתבסס על רמזים לגבי מספר המוקשים השכנים.',
             image: 'assets/games/minesweeper.png',
-            github: 'https://github.com/osherb12/minesweeper',
+            github: 'https://github.com/osherb12/portfolio/blob/main/games/minesweeper.html',
             download: 'games/minesweeper.html',
             play: 'games/minesweeper.html'
         },
@@ -101,7 +101,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'סנייק',
             description: 'שלוטו בנחש שאוכל מזון וגדל, אך היזהרו לא לפגוע בקירות או בזנב שלכם! ארקייד קלאסי המאתגר את הרפלקסים.',
             image: 'assets/games/snake.png',
-            github: 'https://github.com/osherb12/snake',
+            github: 'https://github.com/osherb12/portfolio/blob/main/games/snake.html',
             download: 'games/snake.html',
             play: 'games/snake.html'
         },
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'סודוקו',
             description: 'מלאו לוח 9×9 במספרים כך שכל שורה, כל עמודה, וכל תת-רשת 3×3 יכילו את כל הספרות 1–9.',
             image: 'assets/games/sodoku.png',
-            github: 'https://github.com/osherb12/soduku',
+            github: 'https://github.com/osherb12/portfolio/blob/main/games/soduku.html',
             download: 'games/soduku.html',
             play: 'games/soduku.html'
         },
@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'איקס-עיגול',
             description: 'משחק איקס-עיגול קלאסי שבו עליכם ליישר שלוש מהסימנים שלכם בשורה (אופקית, אנכית או אלכסונית) כדי לנצח.',
             image: 'assets/games/tic-tac-toe.png',
-            github: 'https://github.com/osherb12/tic-tac-toe',
+            github: 'https://github.com/osherb12/portfolio/blob/main/games/tic-tac-toe.html',
             download: 'games/tic-tac-toe.html',
             play: 'games/tic-tac-toe.html'
         },
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: 'טריוויה',
             description: 'בדקו את הידע שלכם עם שאלות ממגוון קטגוריות. כמה שאלות תענו נכון?',
             image: 'assets/games/trivia.png',
-            github: 'https://github.com/osherb12/trivia',
+            github: 'https://github.com/osherb12/portfolio/blob/main/games/trivia.html',
             download: 'games/trivia.html',
             play: 'games/trivia.html'
         }
